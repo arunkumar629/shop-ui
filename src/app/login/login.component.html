@@ -1,0 +1,23 @@
+<div style="margin:auto;margin-top:100px;" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <form>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 form-group">
+          <label for="userName">Email address</label>
+          <input [(ngModel)]="userForm.userName" id="userName" name="emailId" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-lg-6 col-md-6 form-group">
+          <label for="password">Password</label>
+          <input [(ngModel)]="userForm.password" id="password" name="password" type="password" class="form-control" placeholder="Password">
+        </div>
+      </div>
+      <button type="submit" (click)="saveUser()" class="btn btn-primary">Login</button>
+      </form>
+  </div>
+  <div style="margin:auto;margin-top:50px;">
+  <a style="font-size:40px;text-align:center;" class="nav-link" [routerLink]="'/user'" >sign up</a>
+  </div>
+
+  {{this.tk}}
