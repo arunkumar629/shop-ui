@@ -1,3 +1,6 @@
+import { CommonService } from 'src/app/common.service';
+import { AuthGuardService } from 'src/app/auth-guard.service';
+import { HttpInterceptorService } from 'src/app/http-interceptor.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {ServiceapiService } from './serviceapi.service';
@@ -28,7 +31,19 @@ import { ProductComponent } from './product/product.component';
   providers: [
     {
       provide: ServiceapiService
-    }
+    },
+    {
+      provide: CommonService
+    },
+    {
+      provide: AuthGuardService
+    },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpInterceptorService,
+            multi: true
+        }
+    
   ],
   bootstrap: [AppComponent]
 })

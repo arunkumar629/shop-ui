@@ -20,4 +20,9 @@ get(path: string,token:string) {
   let headers = new HttpHeaders().set('Authorization', token).set( 'Content-Type',  'application/json').set('Access-Control-Allow-Origin', '*');
   return this.http.get(this.url + path,{headers});
 }
+getval(path:string){
+  return this.http.get(this.url + path);
 }
+}
+
+

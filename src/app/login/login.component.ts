@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {ServiceapiService} from 'src/app/serviceapi.service';
-
+import { Router } from '@angular/router';
+import { CommonService } from 'src/app/common.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,8 +10,8 @@ import {ServiceapiService} from 'src/app/serviceapi.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private ajax:ServiceapiService) { }
-  public tk:string='';
+  constructor(private router: Router, private ajax:ServiceapiService, private common: CommonService) { }
+  
   userForm={
     userName:'',
     password:''
@@ -21,23 +22,20 @@ export class LoginComponent implements OnInit {
   }
 saveUser(){
   this.ajax.post('/authenticate',this.userForm).subscribe((data)=>{
+    this.router.navigate(['/']);
     this.appendToken(data);
   },
  (error:any)=>{
-   alert(error.message);
+   alert(error.status);
+//  this.common.showNotification("06","problem");
  }
     );
 }
 public appendToken(tokens:any){
 let token:string=tokens;
-token="Bearer "+token;
-this.tk=token;
-this.ajax.get('/user',token).subscribe((data:any)=>{
-  alert(data);
-},
-(error:any)=>{
-  alert(error.message);
-}
-);
+
+localStorage.setItem('token',token);
+
+
 }
 }

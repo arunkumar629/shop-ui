@@ -1,7 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import {ServiceapiService} from 'src/app/serviceapi.service';
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private ajax:ServiceapiService) { }
+  constructor(private router: Router,private ajax:ServiceapiService) { }
 userForm={
   userName:"",
   password:"",
@@ -25,12 +25,13 @@ userForm={
 saveUser(){
 
   this.ajax.post('/user',this.userForm).subscribe((data:any)=>{
-    alert(data);
+    alert("user added successfully");
   },
 (error)=>{
-  alert(error);
+  alert(error.status);
 }
   );
-  alert(this.userForm);
+  this.router.navigate(['/login']);
+
 }
 }
