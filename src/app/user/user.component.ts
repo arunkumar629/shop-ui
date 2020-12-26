@@ -2,6 +2,7 @@ import { FormsModule } from '@angular/forms';
 import {ServiceapiService} from 'src/app/serviceapi.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -23,11 +24,11 @@ userForm={
   ngOnInit(): void {
   }
 saveUser(){
-
+  //alert(this.userForm.userAccount.accountNumber);
   this.ajax.post('/user',this.userForm).subscribe((data:any)=>{
     alert("user added successfully");
   },
-(error)=>{
+(error:any)=>{
   alert(error.status);
 }
   );

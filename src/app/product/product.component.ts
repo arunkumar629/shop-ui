@@ -14,7 +14,8 @@ product:any;
 
     
     this.ajax.getval('/product').subscribe((data:any)=>{
-    this.product=data[0].productName;
+    this.product="http://localhost:8080"+data[0].image;
+
     },
     (error:any)=>{
       alert(error.status);
